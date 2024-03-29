@@ -4,6 +4,7 @@ import { DescCard } from '../components/DescCard';
 import { diseases } from '../data/diseases';
 import * as tf from '@tensorflow/tfjs';
 import './classify.css';
+
 const roboflow = window.roboflow;
 
 export const Classify = () => {
@@ -15,6 +16,8 @@ export const Classify = () => {
   const [loadWebcam, setLoadWebcam] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const [expandedItemIndex, setExpandedItemIndex] = useState(null); // Define expandedItemIndex state
+
   let model = null;
 
   const preProcess = (image) => {
@@ -98,7 +101,6 @@ export const Classify = () => {
     setLoadWebcam(true);
     const getAuth = await roboflow.auth({
       publishable_key: 'rf_IFsWxkQvH2fVforkhmsTrQExKzB2',
-      
     });
     const loadModel = await getAuth.load({
       model: 'tomato-leaf-diseases',
@@ -152,7 +154,10 @@ export const Classify = () => {
     });
   };
   
-  
+  const handleItemClick = (index) => {
+    // Toggle expanded state
+    setExpandedItemIndex(index === expandedItemIndex ? null : index);
+  };
   
 
   useEffect(() => {
@@ -161,22 +166,34 @@ export const Classify = () => {
 
   useEffect(() => {
     if (predict.length > 0) {
-      const predictionMessage = `Prediction: ${predict[0]} (${predict[1]}%)`;
+      const diseaseName = diseases.find(disease => disease.id === predict[0]);
+      const predictionMessage = `Prediction: ${diseaseName ? diseaseName.name : 'Unknown Disease'} (${predict[1]}%)`;
       setChatHistory(prevHistory => [...prevHistory, predictionMessage]);
     }
   }, [predict]);
 
+
   return (
     <div>
-      <div className="relative grid grid-cols-1 justify-center justify-items-center gap-5 p-4">
-      <div className="sidebar">
-      <h2>Detection History</h2>
-      <ul className="chat-list">
-        {chatHistory.map((message, index) => (
-          <li key={index}>{message}</li>
-        ))}
-      </ul>
-    </div>
+    <div className="relative grid grid-cols-1 justify-center justify-items-center gap-5 p-4">
+    <div className="sidebar">
+    <h2 className="text-lg font-semibold mb-4">Detection History</h2>
+    <ul className="chat-list">
+      {chatHistory.map((message, index) => (
+        <li
+          key={index}
+          className={`chat-item ${expandedItemIndex !== null ? 'expanded' : ''}`}
+          onClick={() => handleItemClick(index)}
+        >
+          {/* Exclude "Prediction" from the displayed message */}
+          {message.replace('Prediction:', '')}
+          {expandedItemIndex === null && index === chatHistory.length - 1 && (
+            <span className="view-more">View More</span>
+          )}
+        </li>
+      ))}
+    </ul>
+      </div>
         <div className="absolute top-60 bottom-0 -z-10 w-full bg-[#f0e9d2]"></div>
         <ImageCard
           handleInput={handleInput}

@@ -1,94 +1,123 @@
+/* Sidebar styles */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 300px; /* Adjust the width as needed */
-    height: 100%;
-    background-color: #4a4a4a; /* Background color for the sidebar */
-    padding: 20px;
-    overflow-y: auto; /* Enable vertical scrolling if needed */
-    color: #ffffff; /* Text color */
-    font-family: Arial, sans-serif;
-  }
-  .sidebar:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5;
+  width: 300px; /* Adjust the width as needed */
+  height: 100%;
+  background-color: #171717; /* Background color for the sidebar */
+  padding: 20px; /* Add padding to the sidebar */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  color: #ffffff; /* Text color */
+  font-family: 'Arial Rounded MT Bold', sans-serif; /* Change font family */
+}
+
+
+.sidebar:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Modify box shadow effect */
+}
+
+.toggle-button {
+  position: absolute;
+  top: 10px;
+  right: -20px;
+  width: 30px;
+  height: 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar.collapsed .toggle-button {
+  right: 10px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.chat-history-container {
+  position: relative;
+}
+
+.chat-history {
+  margin-bottom: 20px;
+  display: none; /* Initially hide the chat history */
+}
+
+.chat-history-container:hover .chat-history {
+  display: block; 
+  background: #000;
+}
+
+.chat-history .message {
+  margin-bottom: 10px;
+}
+
+.chat-history .message .user-name {
+  font-weight: bold;
+}
+
+/* Styles for regular chat history item */
+.chat-list {
+  list-style-type: none;
+  padding: 0;
+ 
+}
+.chat-item {
+  padding: 10px;
+  border-radius: 0.375rem; /* equivalent to rounded-md */
+  width: 250px; /* equivalent to w-70 */
+  max-height: 40px; /* equivalent to max-h-10 */
+  overflow: hidden;
+  margin-bottom: 0.5rem; /* equivalent to mb-2 */
+  background-color: #171717; 
   
-  .toggle-button {
-    position: absolute;
-    top: 10px;
-    right: -20px;
-    width: 30px;
-    height: 30px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .sidebar.collapsed .toggle-button {
-    right: 10px;
-  }
-  
-  .sidebar h2 {
-    margin-bottom: 20px;
-    font-size: 20px;
-  }
-  
-  .chat-history-container {
-    position: relative;
-  }
-  
-  .chat-history {
-    margin-bottom: 20px;
-    display: none; /* Initially hide the chat history */
-  }
-  
-  .chat-history-container:hover .chat-history {
-    display: block; /* Show the chat history on hover */
-  }
-  
-  .chat-history .message {
-    margin-bottom: 10px;
-  }
-  
-  .chat-history .message .user-name {
-    font-weight: bold;
-  }
-  
-  .settings {
-    margin-top: 20px;
-  }
-  
-  .settings ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .settings ul li {
-    margin-bottom: 10px;
-    font-size: 14px;
-  }
-  
-  .settings ul li a {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  
-  .settings ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  .user-name {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .user-name:hover {
-    text-decoration: underline;
-  }
-  
+  /* Background color */
+  font-size: 12px;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  border: none;
+}
+
+.chat-item:hover {
+  background-color: #2F2F2F; 
+  /* Adjust background color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.chat-item:last-child {
+  background-color: #2F2F2F; /* Adjust background color for the last chat item */
+}
+
+/* Styles for regular chat history item */
+.chat-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* View More button */
+.view-more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #4a4a4a; /* Background color for the view more button */
+  color: white; /* Text color */
+  padding: 5px 10px;
+  border-top-left-radius: 0.375rem; /* Match chat item border radius */
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.view-more:hover {
+  background-color: #333; /* Adjust background color on hover */
+}
+
+
+.chat-item:last-child .text-white {
+  color: white; /* Adjust text color for the last chat item */
+}

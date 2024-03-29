@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './login.css';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import daun from "../assets/daun1.png";
 
 export const Login = () => {
+  // const nav = useNavigate();
   const [showSignup, setShowSignup] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -13,7 +14,7 @@ export const Login = () => {
   });
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  
 
   const handleToggle = () => {
     setShowSignup(!showSignup);
@@ -22,13 +23,14 @@ export const Login = () => {
   };
 
   const handleSubmit = async () => {
+   
     try {
       if (showSignup) {
         await axios.post('http://localhost:4000/users/create', formData);
         setMessage('User signed up successfully');
       } else {
         await axios.post('http://localhost:4000/auth/login', formData);
-        navigate("/Homepage"); 
+        // nav("/Homepage");
         setMessage('User logged in successfully');
         // Redirect to homepage or navigate to homepage here
        
