@@ -1,10 +1,10 @@
+import React, { useState, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import daun from "../assets/daun1.png";
+import { RiMoonLine } from 'react-icons/ri'; // Import the moon icon
 
-
-export const Navigation = () => {
+export const Navigation = ({ darkMode, toggleDarkMode }) => {
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
 
@@ -31,12 +31,13 @@ export const Navigation = () => {
       <Navbar expand="lg" className={scrolled ? 'scrolled' : ''}>
         <Container>
           <Navbar.Brand href="#Home">
-          <img
+            <img
               src={daun}
               alt="AgriDiagnose Logo"
               className="logo"
             />
-            AgriDiagnose</Navbar.Brand>
+            AgriDiagnose
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
@@ -48,7 +49,6 @@ export const Navigation = () => {
                 onClick={() => onUpdateActiveLink('home')}
               >
                 Home
-                <i className="ri-home-4-line"></i>
               </Nav.Link>
               <Nav.Link
                 href="#about"
@@ -58,7 +58,6 @@ export const Navigation = () => {
                 onClick={() => onUpdateActiveLink('about')}
               >
                 About
-                <i className="ri-eject-line"></i>
               </Nav.Link>
               <Nav.Link
                 href="#features"
@@ -70,8 +69,10 @@ export const Navigation = () => {
                 onClick={() => onUpdateActiveLink('features')}
               >
                 Features
-                <i className="ri-settings-3-line"></i>
               </Nav.Link>
+              <div className="moon-icon" onClick={toggleDarkMode}>
+                <RiMoonLine size={24} color={darkMode ? 'white' : 'black'} />
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -1,26 +1,28 @@
-export const Navbar = () => {
+import React from 'react';
+
+export const Navbar = ({ darkMode, toggleDarkMode }) => {
   return (
     <div>
-      <div className="navbar bg-red-500">
+      <div className={`navbar ${darkMode ? 'dark-bg' : 'bg-red-500'}`}>
         <div className="flex-1">
           <a className="btn btn-ghost normal-case text-xl">Agri-Diagonise</a>
         </div>
         <div className="flex-none">
-          <button className="btn btn-square btn-ghost">
+          <div className="moon-icon" onClick={toggleDarkMode}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              className="inline-block w-5 h-5 stroke-current"
+              className={`inline-block w-5 h-5 stroke-current ${darkMode ? 'text-white' : 'text-gray-800'}`}
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                d="M13 21l4.48-4.48M13 13a8 8 0 100-16 8 8 0 000 16zM13 13V3M6.3 6.3l1.4 1.4M3 13h5.6M10.9 20.7l1.4-1.4"
               ></path>
             </svg>
-          </button>
+          </div>
         </div>
       </div>
     </div>
