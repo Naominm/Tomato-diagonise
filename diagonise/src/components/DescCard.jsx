@@ -3,9 +3,9 @@ import { diseases } from '../data/diseases';
 export const DescCard = ({ progressState, result }) => {
   return (
     <div>
+    
+        <div className={`card-compact w-50 ml-20px gap-5 rounded-lg bg-[#e6ddc4] px-2 shadow-2xl drop-shadow-md md:mx-auto md:w-full ${progressState === 'finish' ? 'ml-0' : ''}`}>
         
-        <div className={`card-compact w-50 gap-5 rounded-lg bg-[#e6ddc4] px-2 shadow-2xl drop-shadow-md md:mx-auto md:w-4/5 ${progressState === 'finish' ? 'ml-0' : ''}`}>
-
         <figure className="grid h-fit max-h-[20rem] justify-center">
           {progressState === 'idle' ? (
             <svg
@@ -122,6 +122,6 @@ export const DescCard = ({ progressState, result }) => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 };

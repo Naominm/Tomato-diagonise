@@ -1,6 +1,6 @@
 /* Sidebar styles */
 .sidebar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   display: flex;
@@ -12,7 +12,9 @@
   padding: 20px; /* Add padding to the sidebar */
   overflow-y: auto; /* Enable vertical scrolling if needed */
   color: #ffffff; /* Text color */
-  font-family: 'Arial Rounded MT Bold', sans-serif; /* Change font family */
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  transition: width 0.3s ease;
+  /* background-color: #e6ddc4; */
 }
 
 
@@ -100,24 +102,33 @@
   padding: 0;
 }
 
-/* View More button */
-.view-more {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-color: #4a4a4a; /* Background color for the view more button */
-  color: white; /* Text color */
-  padding: 5px 10px;
-  border-top-left-radius: 0.375rem; /* Match chat item border radius */
-  font-size: 12px;
-  cursor: pointer;
-}
 
-.view-more:hover {
-  background-color: #333; /* Adjust background color on hover */
-}
 
 
 .chat-item:last-child .text-white {
   color: white; /* Adjust text color for the last chat item */
+}
+
+.sidebar.collapsed {
+  width: 10px; /* Hide toggle button when sidebar is collapsed */
+}
+
+.toggle-button {
+  position: absolute;
+  top: 30px; /* Adjust top position as needed */
+  right: 10px; /* Adjust right position as needed */
+  cursor: pointer;
+  z-index: 1000; /* Ensure the button is above other elements */
+  background-color: transparent;
+}
+@media screen and (max-width: 768px) {
+  /* Hide the sidebar for screens smaller than or equal to 768px */
+  .sidebar {
+    display: none;
+  }
+
+  /* Adjust the main content width when the sidebar is hidden */
+  .main-content {
+    width: 100%; /* Adjust as needed */
+  }
 }

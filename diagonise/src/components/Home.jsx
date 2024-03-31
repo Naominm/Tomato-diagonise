@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { Link } from 'react-router-dom';
 import vector from '../assets/t.png';
 import image6 from '../assets/tom/tom5.jpeg';
 import image7 from '../assets/tom/tom9.jpg';
@@ -40,6 +40,8 @@ export const Home = () => {
     };
   }, []);
 
+ 
+
   const getTaglineColor = () => {
     if (backgroundImageIndex === 6 || backgroundImageIndex === 7 || backgroundImageIndex === 8) {
       return '#FFFFFF'; 
@@ -71,13 +73,14 @@ export const Home = () => {
             </span>
             
             {typingComplete && (
-              <Link to="/classify" className="btn-success btn"> {/* Use Link for navigation */}
-                Detect My Plant
-              </Link>
+              <>
+                <Link to="/classify" className="btn-success btn">
+                  Detect My Plant
+                </Link>
+              </>
             )}
           </div>
           <div className="image">
-            {/* This image will not transition */}
             <img src={vector} alt="hero" />
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ImageCard } from '../components/ImageCard';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { DescCard } from '../components/DescCard';
 import { diseases } from '../data/diseases';
 import * as tf from '@tensorflow/tfjs';
@@ -16,7 +17,9 @@ export const Classify = () => {
   const [loadWebcam, setLoadWebcam] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  const [expandedItemIndex, setExpandedItemIndex] = useState(null); // Define expandedItemIndex state
+  const [expandedItemIndex, setExpandedItemIndex] = useState(null);
+  const [isCollapsed, setIsCollapsed] = useState(false); // Define expandedItemIndex state
+  
 
   let model = null;
 
@@ -172,13 +175,17 @@ export const Classify = () => {
     }
   }, [predict]);
 
+ 
+
 
   return (
     <div>
-    <div className="relative grid grid-cols-1 justify-center justify-items-center gap-5 p-4">
-    <div className="sidebar">
-    <h2 className="text-lg font-semibold mb-4">Detection History</h2>
-    <ul className="chat-list">
+
+    <div className="relative grid grid-cols-1 justify-center justify-items-center gap-5 p-4 bg-[#fff] ">
+    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+      {/* Sidebar content */}
+      <h2 className="text-lg font-semibold mb-4">Detection History</h2>
+      <ul className="chat-list">
       {chatHistory.map((message, index) => (
         <li
           key={index}
@@ -187,11 +194,17 @@ export const Classify = () => {
         >
           {/* Exclude "Prediction" from the displayed message */}
           {message.replace('Prediction:', '')}
-         
+          {expandedItemIndex === null && index === chatHistory.length - 1 && (
+            <span className="view-more">View More</span>
+          )}
         </li>
+        
       ))}
     </ul>
+    <div className="toggle-button" onClick={() => setIsCollapsed(!isCollapsed)}>
+        <MenuOutlinedIcon />
       </div>
+    </div>
         <div className="absolute top-60 bottom-0 -z-10 w-full bg-[#f0e9d2]"></div>
         <ImageCard
           handleInput={handleInput}

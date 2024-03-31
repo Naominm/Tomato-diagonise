@@ -1,7 +1,8 @@
 import { Container } from 'react-bootstrap';
 // import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import favicon from '../assets/tom/favicon.ico';
+// import favicon from '../assets/tom/favicon.ico';
+import vector from '../assets/t.png';
 
 export const About = () => {
   const responsive = {
@@ -28,7 +29,7 @@ export const About = () => {
       <Container>
         <div className="d-flex">
           <div className="image">
-            <img src={favicon} alt="About_image" />
+            <img src={vector} alt="About_image" />
           </div>
           <div className="wrap-text">
             <h2 className="tag">About</h2>

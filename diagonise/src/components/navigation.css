@@ -1,0 +1,18 @@
+.user-profile {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(32, 32, 46);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .initials {
+    color: white;
+    font-size: 25px;
+    text-decoration: none;
+  }
+  .dropdown-toggle {
+    text-decoration: none !important;
+  }
