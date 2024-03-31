@@ -1,5 +1,5 @@
 /* Global Styles */
-body {
+.behind-container {
     background: url('../assets/tom/tom5.jpeg')no-repeat;
     background-size: cover;
    overflow-y: hidden; 

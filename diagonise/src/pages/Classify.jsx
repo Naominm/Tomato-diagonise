@@ -187,9 +187,7 @@ export const Classify = () => {
         >
           {/* Exclude "Prediction" from the displayed message */}
           {message.replace('Prediction:', '')}
-          {expandedItemIndex === null && index === chatHistory.length - 1 && (
-            <span className="view-more">View More</span>
-          )}
+         
         </li>
       ))}
     </ul>

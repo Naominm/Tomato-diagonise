@@ -14,14 +14,12 @@ export const Homepage = () => {
   };
 
   return (
-    <>
-      <div className={`App ${darkMode ? 'dark' : ''}`}>
-        <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <Home />
-        <Features />
-        <About />
-        <Footer />
-      </div>
-    </>
+    <div className={`App ${darkMode ? 'dark' : ''}`}>
+      <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <Home />
+      <Features />
+      <About />
+      <Footer />
+    </div>
   );
 };
