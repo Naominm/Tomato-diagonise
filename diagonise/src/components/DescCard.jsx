@@ -3,6 +3,7 @@ import { diseases } from '../data/diseases';
 export const DescCard = ({ progressState, result }) => {
   return (
     <div>
+       <div style={{ fontFamily: '"Source Sans Pro", sans-serif',  }}>
     
         <div className={`card-compact w-50 ml-20px gap-5 rounded-lg bg-[#e6ddc4] px-2 shadow-2xl drop-shadow-md md:mx-auto md:w-full ${progressState === 'finish' ? 'ml-0' : ''}`}>
         
@@ -121,6 +122,7 @@ export const DescCard = ({ progressState, result }) => {
               : ''}
           </div>
         </div>
+      </div>
       </div>
       </div>
   );

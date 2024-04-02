@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Nav, Navbar, Dropdown } from 'react-bootstrap';
 import daun from "../assets/daun1.png";
-import { RiMoonLine } from 'react-icons/ri'; // Import the moon icon
+import { RiMoonLine, RiSunLine } from 'react-icons/ri'; // Import the moon and sun icons
 import { RiLogoutCircleLine } from 'react-icons/ri'; // Import the logout icon
 import { BsGearFill } from 'react-icons/bs'; // Import the settings icon
+import { useDarkMode } from '../DarkModeContext';
 import './navigation.css';
-
 
 const UserProfile = ({ email }) => {
   const initials = email.substring(0, 2).toUpperCase(); // Get the first two letters of the email
@@ -16,7 +16,8 @@ const UserProfile = ({ email }) => {
   );
 };
 
-export const Navigation = ({ darkMode, toggleDarkMode }) => {
+export const Navigation = () => {
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
 
@@ -46,8 +47,7 @@ export const Navigation = ({ darkMode, toggleDarkMode }) => {
   };
 
   return (
-    
-    <Navbar expand="lg" className={scrolled ? 'scrolled' : ''}>
+    <Navbar expand="lg" className={`${scrolled ? 'scrolled' : ''} ${darkMode ? 'dark-mode' : ''}`}>
       <Container>
         <Navbar.Brand href="#Home">
           <img
@@ -62,36 +62,29 @@ export const Navigation = ({ darkMode, toggleDarkMode }) => {
           <Nav className="ml-auto">
             <Nav.Link
               href="#home"
-              className={
-                activeLink === 'home' ? 'navbar-link active' : 'navbar-link'
-              }
+              className={activeLink === 'home' ? 'navbar-link active' : 'navbar-link'}
               onClick={() => onUpdateActiveLink('home')}
             >
               Home
             </Nav.Link>
             <Nav.Link
               href="#about"
-              className={
-                activeLink === 'about' ? 'navbar-link active' : 'navbar-link'
-              }
+              className={activeLink === 'about' ? 'navbar-link active' : 'navbar-link'}
               onClick={() => onUpdateActiveLink('about')}
             >
               About
             </Nav.Link>
             <Nav.Link
               href="#features"
-              className={
-                activeLink === 'features'
-                  ? 'navbar-link active'
-                  : 'navbar-link'
-              }
+              className={activeLink === 'features' ? 'navbar-link active' : 'navbar-link'}
               onClick={() => onUpdateActiveLink('features')}
             >
               Features
             </Nav.Link>
-            {/* <div className="moon-icon gap-20px" onClick={toggleDarkMode}>
-              <RiMoonLine size={24} color={darkMode ? 'white' : 'black'} />
-            </div> */}
+            {/* Dark mode toggle icon */}
+            <div className="moon-icon gap-20px" onClick={toggleDarkMode}>
+              {darkMode ? <RiSunLine size={24} color="black" /> : <RiMoonLine size={24} color="black" />}
+            </div>
             <Dropdown align="end">
               <Dropdown.Toggle variant="link" id="dropdown-basic">
                 <UserProfile email="user@example.com" /> {/* Pass the user's email */}
@@ -107,7 +100,6 @@ export const Navigation = ({ darkMode, toggleDarkMode }) => {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            
           </Nav>
         </Navbar.Collapse>
       </Container>

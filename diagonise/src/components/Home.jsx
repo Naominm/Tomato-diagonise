@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDarkMode } from '../DarkModeContext';
 import vector from '../assets/t.png';
 import image6 from '../assets/tom/tom5.jpeg';
 import image7 from '../assets/tom/tom9.jpg';
 import image8 from '../assets/tom/tom10.jpg';
 
 export const Home = () => {
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const [typedText, setTypedText] = useState('');
   const [typingComplete, setTypingComplete] = useState(false);
   const [backgroundImageIndex, setBackgroundImageIndex] = useState(0);
@@ -40,19 +42,17 @@ export const Home = () => {
     };
   }, []);
 
- 
-
   const getTaglineColor = () => {
-    if (backgroundImageIndex === 6 || backgroundImageIndex === 7 || backgroundImageIndex === 8) {
-      return '#FFFFFF'; 
-    } else {
-      return '#FFFFFF'; 
-    }
+    return darkMode ? '#FFFFFF' : '#ffffff'; // White text color for dark mode, black text color for light mode
+  };
+
+  const getBackgroundColor = () => {
+    return darkMode ? '#000000' : '#FFFFFF'; // Dark background color for dark mode, light background color for light mode
   };
 
   const getTransitionStyles = () => {
     return {
-      transition: 'background-image 5s ease-in-out', 
+      transition: 'background-image 5s ease-in-out',
     };
   };
 
@@ -63,6 +63,7 @@ export const Home = () => {
       style={{
         ...getTransitionStyles(),
         backgroundImage: `url(${images[backgroundImageIndex]})`,
+        backgroundColor: getBackgroundColor(), // Dynamically set background color based on darkMode
       }}
     >
       <Container>
@@ -71,7 +72,7 @@ export const Home = () => {
             <span className="tagline" style={{ color: getTaglineColor() }}>
               {typedText}
             </span>
-            
+
             {typingComplete && (
               <>
                 <Link to="/classify" className="btn-success btn">

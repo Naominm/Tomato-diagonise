@@ -331,4 +331,20 @@ nav.navbar .theme-toggle i {
     font-size: 32px;
   }
 }
+/* Style for the social icon container */
+.social-icon {
+  display: inline-block; /* Display the icon inline with other elements */
+  margin-right: 10px; /* Adjust spacing between icons */
+}
+
+/* Style for the icon */
+.social-icon i {
+  font-size: 24px; /* Adjust the size of the icon */
+  color: #333; /* Set the color of the icon */
+}
+
+/* Hover effect for the icon */
+.social-icon i:hover {
+  color: #007bff; /* Change the color on hover */
+}
 
