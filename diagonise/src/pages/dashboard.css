@@ -1,0 +1,31 @@
+ body{
+    background-color: rgb(2, 20, 14);
+ }
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+  }
+  
+  .form-row {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .form-cell {
+    flex: 1;
+    
+  }
+  
+  .form-cell label {
+    display: block;
+    color: white;
+     padding-top: 50px;
+   
+  }
+  

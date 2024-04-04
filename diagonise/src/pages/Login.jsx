@@ -33,14 +33,21 @@ export const Login = () => {
   const handleLogin = async () => {
     try {
       if (showSignup) {
-        await axios.post('http://localhost:4000/users/create', formData);
+        const response = await axios.post('http://localhost:4000/users/create', formData);
         setMessage('User signed up successfully');
-        navigate('/');
+        setShowSignup(false);
       } else {
         const response = await axios.post('http://localhost:4000/auth/login', formData);
-        localStorage.setItem('isLoggedIn', true); // Set logged in status in local storage
-        setUserEmail(formData.email); // Set user's email in state upon successful login
-        navigate('/homepage'); 
+        localStorage.setItem('isLoggedIn', true); 
+        localStorage.setItem("tomatoEmail", formData.email);
+        localStorage.setItem("tomatoRole", response.data["role"]);
+        setUserEmail(formData.email);
+        // console.log(response.data)
+        if(response.data["role"] === "admin"){
+          navigate("/admin");
+        }else{
+          navigate('/homepage'); 
+        }
       }
     } catch (error) {
       setError('Error: ' + error.message);
@@ -64,7 +71,7 @@ export const Login = () => {
       setError('Please fill in all fields.');
       setTimeout(() => {
         setError('');
-      }, 3000); // Clear error message after 3 seconds
+      }, 3000); 
     }
   };
 
@@ -83,7 +90,7 @@ export const Login = () => {
                   value={formData.username}
                   onChange={handleChange}
                   className={`input-field ${error && formData.username.trim() === '' ? 'error' : ''}`}
-                  autoComplete="username" // Add autocomplete attribute for username
+                  autoComplete="username" 
                 />
                 <input
                   type="email"
@@ -92,7 +99,7 @@ export const Login = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className={`input-field ${error && formData.email.trim() === '' ? 'error' : ''}`}
-                  autoComplete="email" // Add autocomplete attribute for email
+                  autoComplete="email" 
                 />
                 <input
                   type="password"
@@ -101,13 +108,13 @@ export const Login = () => {
                   value={formData.password}
                   onChange={handleChange}
                   className={`input-field ${error && formData.password.trim() === '' ? 'error' : ''}`}
-                  autoComplete="current-password" // Add autocomplete attribute for password
+                  autoComplete="current-password" 
                 />
                 <input
                   type="password"
                   placeholder="Confirm Password"
                   className="input-field"
-                  autoComplete="new-password" // Add autocomplete attribute for new password
+                  autoComplete="new-password" 
                 />
                 <button
                   className="submit-button"

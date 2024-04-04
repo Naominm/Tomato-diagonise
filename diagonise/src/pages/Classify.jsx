@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ImageCard } from '../components/ImageCard';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { DescCard } from '../components/DescCard';
+import axios from 'axios';
 import { diseases } from '../data/diseases';
 import * as tf from '@tensorflow/tfjs';
 import './classify.css';
@@ -51,6 +52,9 @@ export const Classify = () => {
 
       setProgress('finish');
       setPredict(predictions);
+      const diseaseName = diseases.find(disease => disease.id === predictions[0]);
+      const response = await axios.post('http://localhost:4000/predictions/create', {email: localStorage.getItem("tomatoEmail"), disease: diseaseName.name });
+      console.log(predictions);
     } catch (error) {
       console.error(error);
       setProgress((e) => (e = 'error'));

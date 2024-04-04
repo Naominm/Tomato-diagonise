@@ -14,7 +14,7 @@ export const Home = () => {
   const [backgroundImageIndex, setBackgroundImageIndex] = useState(0);
 
   const tagline =
-    'Welcome Back to Smart farmer website, Glad to have you onBoard. Hush..! Dont tell the lablel. Drop them file in AgriDiagnose by clicking the link below.';
+    'Welcome Back! Am an AI Model for Tomato Crop Disease Diagnosis and Guidance, Glad to have you onBoard..! To get started with Agri-Diagonise click the Button below.';
 
   const images = [image6, image7, image8];
 
